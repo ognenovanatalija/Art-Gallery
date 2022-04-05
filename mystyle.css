@@ -1,0 +1,506 @@
+ .footer {
+    color: white;
+    text-align: center;
+    position: relative;
+    padding: 10px;
+    height: 50px;
+    background-color: white;
+    bottom: 0;
+    width: 100%;
+}
+
+.art{
+    color: rgb(255, 145, 0);
+}
+
+.copyright{
+    color: rgb(255, 145, 0);
+}
+
+  *,
+  *:before,
+  *:after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+  
+  form > * {
+      outline: none;
+  }
+  
+  a {
+      text-decoration: none;
+      color: inherit;
+  }
+  
+  ul, li {
+      list-style: none;
+  }
+  
+  
+  /* --- Clearfix for floated Elements --- */
+  
+  /* I never ended up using this for the nav-bar */
+  .clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+  
+  
+  /* --- Typography --- */
+  
+  
+  body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #eee;
+      color: #666;
+      margin-top: 60px; /* height of nav-bar */
+  }
+  
+  p {
+      line-height: 1.4;
+  }
+  
+  .small-caps {
+      text-transform: uppercase;
+      letter-spacing: 0.15rem;
+      font-size: 0.7rem;
+  }
+  
+  .bolder {
+      font-weight: bolder;
+  }
+  
+  .lighter {
+      font-weight: lighter;
+  }
+  
+  .text-center {
+      text-align: center;
+  }
+  
+  .site-logo {
+      font-size: 2rem;
+      font-weight: bolder;
+      text-transform: uppercase;
+      letter-spacing: 0.8rem;
+      margin: 0 1rem;
+  }
+  
+  /* --- Elements --- */
+  
+  
+  .container {
+      max-width: 1200px; /* max 'width' of contents of site */
+      margin: 0 auto; /* centered horizontally  */
+  }
+  
+  .nav-bar {
+      position: fixed; /* lock to top */
+      top: 0;
+      width: 100%; /* full width */
+      background-color: white;
+      height: 60px;
+      z-index: 9999;
+  }
+  
+  .nav-bar .container {
+      display: flex;
+      align-items: center; /* vertically center */
+      height: 100%;
+  }
+  
+  /* Hide checkbox that controls Mobile Nav Button*/
+  #drop-down-cbox {
+      display: none;
+  }
+  
+  /* Mobile Nav Button */
+  #drop-down-cbox + label {
+      position: relative;
+      display: none;
+      width: 60px;
+      height: 60px;
+      overflow: hidden;
+      background-color: transparent;
+      transition: all 10ms ease-in-out;
+  }
+  
+  /* Mobile Nav Button Bars */
+  #drop-down-cbox + label span {
+      position: absolute;
+      display: block;
+      background-color: #666;
+      width: 34px;
+      height: 4px;
+      border-radius: 2px;
+      left: 50%;
+      transform: translate(-50%, -50%); /* centering trick */
+      transition: all 300ms ease-in-out;
+  }
+  
+  /* Mobile Nav Button Bars Invididually */
+  #drop-down-cbox + label span:nth-child(1) {
+      top: 35%; /* evenly spaced */
+  }
+  #drop-down-cbox + label span:nth-child(2) {
+      top: 50%; /* evenly spaced */
+  }
+  #drop-down-cbox + label span:nth-child(3) {
+      top: 65%; /* evenly spaced */
+  }
+  
+  /* Mobile Nav Button Styling for Checked */
+  #drop-down-cbox:checked + label {
+      background-color: #666;
+  }
+  
+  #drop-down-cbox:checked + label span {
+      background-color: white;
+  }
+  
+  /* Transform the bars into an 'X' */
+  #drop-down-cbox:checked + label span:nth-child(1) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg); /* center, then rotate */
+  }
+  #drop-down-cbox:checked + label span:nth-child(2) {
+      left: -150%; /* move center bar out of the picture */
+  }
+  #drop-down-cbox:checked + label span:nth-child(3) {
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg); /* center, then rotate */
+  }
+  
+  /* Main Nav Desktop */
+  .main-nav {
+      flex-grow: 1; /* fill remaining space */
+      display: flex;
+      justify-content: space-around; /* evenly space items */
+      align-items: center; /* center vertically */
+  }
+  
+  .main-nav li {
+      display: block;
+      width: 100%;
+      height: 60px;
+      line-height: 60px; /* vertically center text, matches height */
+      text-align: center;
+  }
+  
+  .main-nav li a,
+  .main-nav li span {
+      display: block;
+      width: 100%;
+      height: 100%;
+  }
+  
+  .main-nav li a:hover,
+  .main-nav li span:hover {
+      border-bottom: 4px solid #666;
+  }
+  
+  .main-nav li > ul {
+      max-height: 0px; /* max-height instead of height, height can't transition to auto */
+      transition: all 500ms ease-in-out;
+      overflow: hidden; /* make it so nav doesn't show beyond the 0px max-height */
+  }
+  
+  .main-nav li:hover > ul {
+      max-height: 180px; /* height x how many links */
+      height: auto;
+  }
+  
+  .main-nav li > ul li a,
+  .main-nav li > ul li span {
+      background-color: white;
+  }
+  
+  .main-nav li > ul li a:hover,
+  .main-nav li > ul li span:hover {
+      background-color: #666;
+      color: white;
+      border-bottom: none;
+  }
+  
+  /* Tablet and Mobile View */
+  @media (max-width: 768px) {
+      .site-logo {
+          font-size: 1.5rem;
+          flex-grow: 1;
+          text-align: center;
+      }
+      
+      #drop-down-cbox + label {
+          display: block; /* unhide the mobile nav button */
+      }
+      
+      .main-nav {
+          max-height: 0px; /* same vertical grow transition trick as above */
+          height: calc(100vh - 60px); /* take full vertical viewport height, -60px for nav-bar */
+          overflow: hidden;
+          position: absolute;
+          top: 60px;
+          line-height: auto;
+          left: 0;
+          width: 100%;
+          flex-direction: column;
+          background-color: white;
+          transition: all 500ms ease-in-out;
+      }
+      
+      #drop-down-cbox:checked ~ .main-nav {
+          max-height: calc(100vh - 60px);
+          transition: all 500ms ease-in-out;
+      }
+  
+      .main-nav li span {
+          position: relative;
+      }
+      
+      /* design and position downward arrow */
+      .main-nav li span:after {
+          content: "";
+          width: 6px;
+          height: 6px;
+          position: absolute;
+          top: 50%;
+          margin-top: -2px;
+          margin-left: 8px;
+          transform: translateY(-50%) rotate(-45deg);
+          border-left: 2px solid #666;
+          border-bottom: 2px solid #666;
+      }
+      
+      .main-nav li a:hover,
+      .main-nav li span:hover {
+          background-color: #666;
+          color: white;
+          border-bottom: none;
+      }
+      
+      .main-nav li > ul li {
+          position: relative;
+      }
+      
+      .main-nav li > ul li a,
+      .main-nav li > ul li span {
+          background-color: #eee;
+      }
+      
+  }
+  
+
+/*Slideshow*/
+  * {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+.container1 {
+    position: relative;
+    text-align: center;
+    color: white;
+    
+    
+  }
+  
+  
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+
+  }
+
+
+  .pic{
+      background-image: url("pic.jpg");
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: 0;
+  }
+
+ .about{
+     color: orange;
+     border: 1px solid white;
+     background-color: white;
+     margin-top: 200px;
+     margin-bottom: 200px;
+     margin-left: 300px;
+     margin-right: 300px;
+ }
+
+
+ /* CONTACT */
+.contactus{
+    color: orange;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Position the image container (needed to position the left and right arrows) */
+  .container3 {
+    position: relative;
+    text-align: center;
+  }
+  
+  /* Hide the images by default */
+  .mySlides {
+    display: none;
+  }
+  
+  /* Add a pointer when hovering over the thumbnail images */
+  .cursor {
+    cursor: pointer;
+  }
+  
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  /* Container for image text */
+  .caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Six columns side by side */
+  .column {
+    float: left;
+    width: 16.66%;
+  }
+  
+  /* Add a transparency effect for thumnbail images */
+  .demo {
+    opacity: 0.6;
+  }
+  
+  .active,
+  .demo:hover {
+    opacity: 1;
+  }
+  
